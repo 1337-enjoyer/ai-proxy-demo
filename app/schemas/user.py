@@ -1,16 +1,15 @@
-from pydantic import BaseModel, EmailStr, ConfigDict
-from uuid import UUID
-from datetime import datetime
+# app/schemas/user.py
+from fastapi_users import schemas
+import uuid
 
 
-class UserCreate(BaseModel):
-    email: EmailStr
-    password: str
+class UserRead(schemas.BaseUser[uuid.UUID]):
+    pass
 
 
-class UserResponse(BaseModel):
-    model_config = ConfigDict(from_attributes=True)
-    id: UUID
-    email: EmailStr
-    is_active: bool
-    created_at: datetime
+class UserCreate(schemas.BaseUserCreate):
+    pass
+
+
+class UserUpdate(schemas.BaseUserUpdate):
+    pass
